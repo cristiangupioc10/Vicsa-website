@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VICSA Contratistas Generales | Soluciones Metalmécanicas e Instrumentación Industrial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fbbf24;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.95) 0%, rgba(59, 130, 246, 0.9) 100%), 
+                        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"%3E%3Crect fill="%23334155" width="1200" height="600"/%3E%3Cg fill="%23475569"%3E%3Ccircle cx="200" cy="150" r="80"/%3E%3Ccircle cx="600" cy="300" r="120"/%3E%3Ccircle cx="1000" cy="200" r="100"/%3E%3Crect x="400" y="400" width="200" height="150" transform="rotate(15 500 475)"/%3E%3C/g%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 2rem 120px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e3a8a;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.6);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3a8a;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #fbbf24;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #3b82f6;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        .service-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* About */
+        #nosotros {
+            background: #f3f4f6;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #1e3a8a;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        /* Sectors */
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .sector-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .sector-card:hover {
+            transform: scale(1.05);
+        }
+
+        .sector-card h3 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Gallery */
+        .projects-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            background: #e5e7eb;
+            loading: lazy;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(30, 58, 138, 0.9), transparent);
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 9999;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        /* Contact */
+        #contacto {
+            background: #f3f4f6;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-item-icon {
+            font-size: 2rem;
+            color: #3b82f6;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #1e3a8a;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://i.postimg.cc/XJBxsRBw/image.png" alt="VICSA Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#sectores">Sectores</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <h1>VICSA Contratistas Generales</h1>
+        <p style="font-size: 1.5rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 1rem;">CONFIABILIDAD INDUSTRIAL EN CADA PROYECTO</p>
+        <p>Soluciones integrales en metalmécanica e instrumentación industrial para los sectores químico, pesquero e industrial</p>
+        <a href="#contacto" class="cta-button">Solicitar Cotización</a>
+    </section>
+
+    <!-- Services -->
+    <section id="servicios">
+        <h2>Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Fabricación Metalmécanica</h3>
+                <p>Diseño y fabricación de estructuras metálicas, tanques, recipientes a presión y componentes industriales con los más altos estándares de calidad.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Instrumentación Industrial</h3>
+                <p>Instalación, calibración y mantenimiento de sistemas de instrumentación y control para optimizar sus procesos industriales.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Montaje e Instalación</h3>
+                <p>Servicios especializados de montaje e instalación de equipos industriales, tuberías y sistemas completos llave en mano.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛠️</div>
+                <h3>Mantenimiento Industrial</h3>
+                <p>Programas de mantenimiento preventivo y correctivo para asegurar la continuidad operativa de sus instalaciones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="nosotros">
+        <h2>Sobre Nosotros</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Experiencia y Compromiso</h3>
+                <p>VICSA Contratistas Generales es una empresa especializada en brindar soluciones integrales para la industria. Nuestro equipo de profesionales altamente calificados combina experiencia técnica con un profundo conocimiento de los sectores químico, pesquero e industrial.</p>
+                <p>Nos distinguimos por nuestra capacidad de entregar proyectos de calidad, cumpliendo con los más rigurosos estándares de seguridad y eficiencia operativa.</p>
+                <p><strong>Nuestra Misión:</strong> Proporcionar soluciones metalmécanicas e instrumentación industrial de excelencia que impulsen el éxito de nuestros clientes.</p>
+            </div>
+            <div class="about-image">
+                🏭
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectors -->
+    <section id="sectores">
+        <h2>Sectores que Atendemos</h2>
+        <div class="sectors-grid">
+            <div class="sector-card">
+                <div style="font-size: 4rem;">🧪</div>
+                <h3>Sector Químico</h3>
+                <p>Soluciones especializadas para plantas químicas y petroquímicas</p>
+            </div>
+            <div class="sector-card">
+                <div style="font-size: 4rem;">🐟</div>
+                <h3>Sector Pesquero</h3>
+                <p>Equipamiento y servicios para la industria pesquera y procesamiento</p>
+            </div>
+            <div class="sector-card">
+                <div style="font-size: 4rem;">🏭</div>
+                <h3>Industria General</h3>
+                <p>Proyectos para manufactura, minería y plantas de producción</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Gallery -->
+    <section id="proyectos" style="background: #f3f4f6;">
+        <h2>Nuestros Proyectos</h2>
+        <div class="projects-gallery">
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/PfCrv9YG/image.png" alt="Maquinaria Industrial - Engranajes de Precisión">
+                <div class="gallery-overlay">
+                    <h4>Maquinaria Industrial</h4>
+                    <p>Fabricación de engranajes y componentes de precisión</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/zfTLPT2w/image.png" alt="Sector Pesquero - Planta Industrial">
+                <div class="gallery-overlay">
+                    <h4>Sector Pesquero</h4>
+                    <p>Instalaciones y equipamiento para procesamiento</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/MGXpDGJn/image.png" alt="Fabricación Metalmécanica">
+                <div class="gallery-overlay">
+                    <h4>Fabricación Metalmécanica</h4>
+                    <p>Componentes industriales de alta resistencia</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/GtMH6vsv/image.png" alt="Equipos Rotativos Pesqueros">
+                <div class="gallery-overlay">
+                    <h4>Equipos Rotativos</h4>
+                    <p>Mantenimiento y fabricación para sector pesquero</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/Gt9fwtcm/image.png" alt="Montaje Estructural">
+                <div class="gallery-overlay">
+                    <h4>Montaje de Estructuras</h4>
+                    <p>Instalación de estructuras metálicas complejas</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/y8BJrR64/image.png" alt="Sector Químico - Instalación Nocturna">
+                <div class="gallery-overlay">
+                    <h4>Sector Químico</h4>
+                    <p>Instalación de equipos en plantas químicas</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/HLmZ6Gws/image.png" alt="Proyectos Industriales de Gran Escala">
+                <div class="gallery-overlay">
+                    <h4>Proyectos Gran Escala</h4>
+                    <p>Montaje con grúas y equipos especializados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-item-icon">📱</div>
+                    <div>
+                        <h4>WhatsApp / Teléfono</h4>
+                        <p>+51 913 955 528</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📧</div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>christian.gupioc@vicsa.com.pe</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div>
+                        <h4>Ubicación</h4>
+                        <p>Lima, Perú</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 style="color: #1e3a8a; margin-bottom: 1.5rem;">Solicitar Cotización</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/51913955528?text=Hola,%20me%20interesa%20solicitar%20información%20sobre%20sus%20servicios%20en%20VICSA" 
+       class="whatsapp-float" 
+       target="_blank" 
+       title="Contactar por WhatsApp">
+        <svg width="35" height="35" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.825.748 5.48 2.048 7.776L0 32l8.448-2.208A15.89 15.89 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.476 0-4.812-.672-6.812-1.84l-.488-.292-5.06 1.324 1.348-4.948-.32-.508A13.27 13.27 0 012.667 16c0-7.364 5.968-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z" fill="white"/>
+            <path d="M23.573 19.48c-.396-.2-2.344-1.156-2.708-1.288-.364-.136-.628-.2-.892.2-.264.396-1.02 1.288-1.252 1.556-.232.264-.464.3-.86.1-.396-.2-1.672-.616-3.184-1.964-1.176-1.048-1.972-2.344-2.204-2.74-.232-.396-.024-.612.176-.808.18-.18.396-.464.596-.696.2-.232.264-.396.396-.66.136-.264.068-.496-.032-.696-.1-.2-.892-2.148-1.224-2.94-.32-.772-.648-.668-.892-.68-.232-.012-.496-.016-.76-.016s-.696.1-1.06.496c-.364.396-1.388 1.356-1.388 3.308s1.42 3.836 1.62 4.104c.2.264 2.82 4.304 6.828 6.032.956.412 1.7.656 2.28.84.96.304 1.836.26 2.528.156.772-.116 2.344-.956 2.676-1.88.332-.924.332-1.716.232-1.88-.1-.168-.364-.268-.76-.468z" fill="white"/>
+        </svg>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 VICSA Contratistas Generales. Todos los derechos reservados.</p>
+        <p>Soluciones Metalmécanicas e Instrumentación Industrial</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
